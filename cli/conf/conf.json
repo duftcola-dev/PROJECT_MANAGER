@@ -1,0 +1,28 @@
+{
+    "ignore_this":["cli","logs","requirements","venv",".gitignore",".git"],
+    "main_repos":["https://github.com/duftcola-dev/web_page_template.git"],
+    "commands":{
+        "templates":{
+            "web_page_template":[
+                "git clone https://github.com/duftcola-dev/web_page_template.git"
+                ],
+            "api":["add_api"],
+            "mircroservice":["add_microservice"]
+        },
+        "styles":{
+            "boostrap":["add_bootstrap"],
+            "other":["add_other"]
+        },
+        "database":{
+            "sqlite":["add_sqlite"],
+            "mysql":["add_mysql"],
+            "mongodb":["add_mongodb"],
+            "mongo_attlas":["add_mongo_atlas"],
+            "redis":["add_redis"]
+        },
+        "environment":{
+            "venv":["create_venv"],
+            "docker":["dockerize"]
+        }
+    }
+}

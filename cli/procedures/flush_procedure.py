@@ -1,18 +1,20 @@
 import os
-from conf.conf import ignore_this
-from .mapper import map_dirs,remove_dir,check_dir
+from .procedure_meta import ProcedureMeta
+from .mapping_procedure import map_dirs,remove_dir,check_dir
 from .logging import log
 
 
-class FLushProcess:
-    def __init__(self) -> None:
+class FLushProcess(ProcedureMeta):
+    def __init__(self,conf_path:str) -> None:
+        super().__init__()
+        self.confContent=self.readConf(conf_path)
         self.state = "IDLE"
         self.templates = {}
         self.target_template = ""
 
   
     def mapping_files(self):
-            self.templates = map_dirs(ignore_this).copy()
+            # self.templates = map_dirs(ignore_this).copy()
             if len(self.templates) == 0:
                 self.state = "DONE"
                 log(f"{len(self.templates)} no templates available")
@@ -55,9 +57,9 @@ class FLushProcess:
             log(f"Cannot delete --> {item}","","red",True,True)
         self.state =  "DONE"
 
+
     def run(self):
         while self.state != "DONE":
-
             if self.state == "IDLE":
                 self.mapping_files()
             if self.state == "MAPPING":
